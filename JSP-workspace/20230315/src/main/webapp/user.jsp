@@ -15,7 +15,7 @@
 	<table>
 		<tr><th colspan="2">JSP Bean테스트</th></tr>
 		<tr><th> 이 름 </th><td><input type="text" name="name" value="<%=info.getName()%>"></td></tr>
-		<tr><th> 학 번 </th><td><input type="text" name="num"- value ="<%=info.getNum()%>"></td></tr>
+		<tr><th> 학 번 </th><td><input type="text" name="num" value ="<%=info.getNum()%>"></td></tr>
 		<tr>
 		<th colspan="2">
 			<input type="submit" value="보내기">

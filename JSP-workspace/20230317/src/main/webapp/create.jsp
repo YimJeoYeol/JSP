@@ -6,19 +6,21 @@
 	ResultSet rs = null;
 
 	try{
-		Class.forName("com.mysql.cj.jdbc.Driver");	
+		/* Class.forName("com.mysql.cj.jdbc.Driver"); */
+		Class.forName("oracle.jdbc.driver.OracleDriver");
 		out.print("드라이버 로딩 완료");
 	}catch(ClassNotFoundException e){
 		out.print(e);
 	}
 	try{
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/member ? useUnicode=true", "root","1111");
+		/* conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/member ? useUnicode=true", "root","1111"); */
+		conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system","1234");
 	 	out.print("DB 연결 완료");
-		String query = "create table woori(id char(10) primary key, name char(10))";
+		 String query = "create table woori(id varchar2(10) primary key, name varchar2(10))";
 		st = conn.createStatement();
 		out.print("<BR>" + st);
 		st.executeUpdate(query);
-		out.print("테이블 생성 성공!");
+		out.print("테이블 생성 성공!"); 
 		st.close();
 		conn.close();
 	}catch(SQLException e){
