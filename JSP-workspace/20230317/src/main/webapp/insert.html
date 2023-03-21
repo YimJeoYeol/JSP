@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	table, tr,th,td{
+	border : 1ps solid black;
+	border-collapse: collapse;
+	}
+</style>
+<script>
+	function check(){
+		var blank = 0;
+		if(form1.id.value == "")
+			blank = 1;
+		if(fomr1.password.value == "")
+			blank = 1;
+		if(fomr1.name.value == "")
+			blank = 1;
+		if(fomr1.email.value == "")
+			blank = 1;
+		if(blacnk == 1){
+			alert("모든 내용을 입력해 주세요.");
+			return (false);
+		}
+		else{
+			return (true);
+		}
+	}
+	
+	function check_num(str){
+		if(isNaN(str)){
+			alert("숫자를 입력하세요");
+			return "";
+		}else return str;
+	}
+</script>
+</head>
+<body>
+	<form action = "insert.jsp" method="post" name="form1" onsubmit="return check();"> 
+		<table border="1">
+			<tr><th>사용자 ID</th><td><input type = "text" name="id"></td></tr>
+			<tr><th> 암 호 </th><td><input type="password" name="password" onkeyup="this.value=check_num(this.value)"></td><tr>
+			<tr><th>이름</th><td><input type="text" name="name"/><tr>
+			<tr><th>E-mail</th><td><input type="text" name="email"></td><tr>
+			<tr><th colspan=2><input type="submit" value="확인"> 
+							  <input type="reset" value="다시작성"></th><tr>
+		</table>
+	</form>
+</body>
+</html>

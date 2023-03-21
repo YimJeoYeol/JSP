@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>한사람 조회</title>
+<SCRIPT >
+function checknum(){
+	var blank = 0;
+	if(form1.id.value == "")
+		blank = 1;
+	if(fomr1.password.value == "")
+		blank = 1;
+
+	if(blacnk == 1){
+		alert("모든 내용을 입력해 주세요.");
+		return (false);
+	}
+	else{
+		return (true);
+	}
+}
+function check_num(str){
+	if(isNaN(str)){
+		alert("숫자를 입력하세요");
+		return "";
+	}else return str;
+}
+</SCRIPT>
+<style>
+	table, tr, td, th {
+		border : 2px solid red;
+		border-collapse: collapse;
+	}
+</style>
+</head>
+<body>
+	<form action="select.jsp" action="post" name=fomr1 onsubmit="return checknum();">
+		<table>
+			<tr><th>사용자 ID</th><td><input type="text" name="id"></td></tr>
+			<tr><th>비밀번호</th><td><input type="password" name="password"></td></tr>
+			<tr><th colspan=2><input type="submit" value="조회"></th></tr>
+		</table>
+	
+	</form>
+	
+</body>
+</html>
