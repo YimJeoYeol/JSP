@@ -7,7 +7,7 @@
 <SCRIPT >
 function checknum(){
 	var blank = 0;
-	if(form1.id.value == "")
+	if(form1.id.value	    == "")
 		blank = 1;
 	if(fomr1.password.value == "")
 		blank = 1;
@@ -38,7 +38,7 @@ function check_num(str){
 	<form action="select.jsp" action="post" name=fomr1 onsubmit="return checknum();">
 		<table>
 			<tr><th>사용자 ID</th><td><input type="text" name="id"></td></tr>
-			<tr><th>비밀번호</th><td><input type="password" name="password"></td></tr>
+			<tr><th>비밀번호</th><td><input type="password" name="password" onkeyup="this.value=check_num(this.value)"></td></tr>
 			<tr><th colspan=2><input type="submit" value="조회"></th></tr>
 		</table>
 	

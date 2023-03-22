@@ -2,8 +2,8 @@
     pageEncoding="UTF-8" import="java.sql.*"%>
 <%
 	Connection conn = null;
-	Statement st = null;
-	ResultSet rs = null;
+	Statement  st   = null;
+	ResultSet  rs   = null;
 
 	try{
 		/* Class.forName("com.mysql.cj.jdbc.Driver"); */
