@@ -6,31 +6,31 @@
 
 	
 	
-	Connection conn     = null;
-	Statement  st       = null;
-	/* ResultSet  rs       = null; */
-	String     sql      = null;
-	PreparedStatement  pst = null;
- 	int 	   cnt		= 0; 
-	String     url      = "jdbc:oracle:thin:@localhost:1521:xe";
-	String     userId   = "system";
-	String     userPw   = "1234";
-	String     id       = request.getParameter("id");
-	int        password = Integer.parseInt(request.getParameter("password"));
-	String     name     = request.getParameter("name");
-	String     email    = request.getParameter("email");
+	Connection 		   conn     = null;
+	Statement  		   st       = null;
+	/* ResultSet  rs            = null; */
+	String     		   sql      = null;
+	PreparedStatement  pst      = null;
+ 	int 	   		   cnt      = 0; 
+	String     		   url      = "jdbc:oracle:thin:@localhost:1521:xe";
+	String     		   userId   = "system";
+	String     		   userPw   = "1234";
+	String     		   id       = request.getParameter("id");
+	int        		   password = Integer.parseInt(request.getParameter("password"));
+	String     		   name     = request.getParameter("name");
+	String     		   emial    = request.getParameter("emial");
 	
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		conn = DriverManager.getConnection(url,userId,userPw);
 		/* st = conn.createStatement(); */
 		
-//		sql = "insert into woori values('"+id+"', '"+name+"', '"+email+"', "+password+")";
+//		sql = "insert into woori values('"+id+"', '"+name+"', '"+emial+"', "+password+")";
 		sql = "insert into woori values(?, ?, ?, ?)";
 		pst = conn.prepareStatement(sql);
 		pst.setString(1, id);
 		pst.setString(2, name);
-		pst.setString(3, email);
+		pst.setString(3, emial);
 		pst.setInt(4, password);
 		
 		System.out.println(sql);
@@ -53,8 +53,8 @@
 		try{
 			
 		/* 	if(rs != null)   rs.close(); */
-			if(pst != null) pst.close();
-			if(st != null)   st.close();
+			if(pst  != null) pst.close();
+			if(st   != null) st.close();
 			if(conn != null) conn.close();
 		}catch(SQLException e){
 			out.print(e);

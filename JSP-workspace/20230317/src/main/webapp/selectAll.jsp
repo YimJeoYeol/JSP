@@ -20,21 +20,21 @@
 <% 
 
 	request.setCharacterEncoding("UTF-8");
-	Connection conn     = null;
-	Statement  st       = null;
-	ResultSet  rs       = null; 
-	String     sql      = null;
-	PreparedStatement  pst = null;
+	Connection 		   conn   = null;
+	Statement  		   st     = null;
+	ResultSet  		   rs     = null; 
+	String     		   sql    = null;
+	PreparedStatement  pst    = null;
 	
-	String     url      = "jdbc:oracle:thin:@localhost:1521:xe";
-	String     userId   = "system";
-	String     userPw   = "1234";
+	String     		   url    = "jdbc:oracle:thin:@localhost:1521:xe";
+	String     		   userId = "system";
+	String     		   userPw = "1234";
 
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		conn = DriverManager.getConnection(url,userId,userPw);
 		st = conn.createStatement();
-		rs = st.executeQuery("select * from woori orderby id");
+		rs = st.executeQuery("select * from woori order by id");
 		/* st.executeQuery(sql); */
 		
 	%>
@@ -53,10 +53,10 @@
 		}else{
 			//테이블에 정보가 있으면 갯수만큼 화면에 출력
 			do{
-				out.print("<tr><td>"+rs.getString(1) + "</td>" );
-				out.print("<td>"+rs.getString(2) + "</td>");
-				out.print("<td>"+rs.getString(3)+ "</td>");
-				out.print("<td>"+rs.getInt(4)    + "</td></tr>");
+				out.print("<tr><td>"+ rs.getString(1) 	 + "</td>" );
+				out.print("<td>"    + rs.getString(2)     + "</td>");
+				out.print("<td>"    + rs.getString(3)     + "</td>");
+				out.print("<td>"    + rs.getInt(4)        + "</td></tr>");
 				
 			}while(rs.next());
 		} 
@@ -66,9 +66,9 @@
 		out.print(e);
 	}finally{
 		try{
-			if(rs != null)   rs.close();
-			if(st != null)   st.close();
-			if(conn != null) conn.close();
+			if(rs   != null)   rs.close();
+			if(st   != null)   st.close();
+			if(conn != null)   conn.close();
 		}catch(SQLException e){
 			out.print(e);
 		}

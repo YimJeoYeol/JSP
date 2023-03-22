@@ -24,18 +24,18 @@
 
 	//필요한 객체 선언
 	
-	Connection conn     = null;
-	Statement  st       = null;
-	ResultSet  rs       = null; 
-	String     sql      = null;
+	Connection conn        = null;
+	Statement  st          = null;
+	ResultSet  rs          = null; 
+	String     sql         = null;
 	PreparedStatement  pst = null;
 	
-	String className = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String dbID = "system";
-	String dbPassword = "1234";
-	String id = request.getParameter("id");
-	String password = request.getParameter("password");
+	String className 	   = "oracle.jdbc.driver.OracleDriver";
+	String url 			   = "jdbc:oracle:thin:@localhost:1521:XE";
+	String dbID 		   = "system";
+	String dbPassword      = "1234";
+	String id 			   = request.getParameter("id");
+	String password 	   = request.getParameter("password");
 	
 	
 	try {
@@ -47,46 +47,45 @@
 		//쿼리문 만들기
 		sql = "select * from woori where id = ? and password = ?";
 		pst = conn.prepareStatement(sql);
-		if(!(rs.next())){%>
-		해당정보가 없습니다.
-
-<%
+		pst.setString(1, id);
+		pst.setString(2, password);
+		rs = pst.executeQuery();
+		if(!(rs.next())){
+			out.print("해당 회원 없습니다. <br>");
+		}else{%>
+		 사용자 ID가 <%=rs.getString("id") %>인 회원의 정보는 다음과 같습니다.<br> 		
+		<form action="update.jsp" method="post">
+			<input type="hidden" name="id" value="<%=rs.getString("id") %>">
+			<table>
+				<tr><th> 이 름 : </th><td><input type="text" name="name" value="<%=rs.getString("name")%>"></td></tr>
+				<tr><th> E-mail :</th><td><input type="email" name="emial" value="<%=rs.getString("emial")%>"></td></tr>
+				<tr><th colspan="2">
+				<input type="submit" value="수정하기">
+				<a href="delete.jsp?id=<%=rs.getString("id") %>">삭제하기</a>
+				</th></tr>
+			</table>
+		</form>
 			
-		}else{
-			if(password.equals(rs.getString("password"))){%>
-				사용자 ID가 <%= id %>인 회원의 정보는 다음과 같습니다.
-				정보를 변경하려면 내용을 입력한 다음 <수정하기>버튼을 누르세요
-				<form name="form1" method="post" action="update.jsp">
-				<input type="hidden" name="id" value="<%=id %>">
-				<br> 이름 :
-				<input type="text" name="name" vlaue="<%rs.getString("name")%>">
-				<br> email :
-				<input type="text" name="email" vlaue="<%rs.getString("email")%>">
-				<input type="submit" name="change" value="수정하기">
-				<a href="delete.jsp?id=<%=id%>">삭제하기</a>
-				
-				</form>
-				<%} else { %>
-				비밀번호가 틀립니다.
-				<%
-			}
+			
+		<% 
 		}
-		
-		rs = pst.executeQuery(sql); 
-	} catch (ClassNotFoundException e){
-		out.print(e);
-	} catch (SQLException e){
-		out.print(e);
-	} finally {
-		try {
-			if(rs != null) rs.close();
-			if(pst != null) pst.close();
-			if(st != null) st.close();
-			if(conn != null) conn.close();
-		} catch (SQLException e){
-			out.print(e);
-		}
-	}
-%>
+					 
+					} catch (ClassNotFoundException e){
+						out.print(e);
+					} catch (SQLException e){
+						out.print(e);
+					} finally {
+						try {
+							if(rs != null) rs.close();
+							if(pst != null) pst.close();
+							if(st != null) st.close();
+							if(conn != null) conn.close();
+						} catch (SQLException e){
+							out.print(e);
+						}
+					}
+				%>
+	<hr>
+	<a href="main.html">Main으로 가기</a>  <a href="">조회페이지로</a>
 </body>
 </html>
