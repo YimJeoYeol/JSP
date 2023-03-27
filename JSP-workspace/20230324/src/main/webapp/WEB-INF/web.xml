@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>0324Model</display-name>
+  
+  <context-param>
+  	<param-name>driverName</param-name>
+  	<param-value>oracle.jdbc.driver.OracleDriver</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>url</param-name>
+  	<param-value>jdbc:oracle:thin:@localhost:1521:XE</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>dbID</param-name>
+  	<param-value>system</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>dbPassword</param-name>
+  	<param-value>1234</param-value>
+  </context-param>
+  
+  <!-- servlet이 있다고 등록하는 것 -->
+  <servlet>
+  	<servlet-name>AppInitServlet</servlet-name>
+  	<servlet-class>servlets.AppInitServlet</servlet-class>
+  <!-- application이 load될 때 가장 먼저 시작될 servlet을 설정하는 태그 -->
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  
+  <!-- welcome file은 처음 app이 실행될 때 가져오는 파일 -->
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+</web-app>
