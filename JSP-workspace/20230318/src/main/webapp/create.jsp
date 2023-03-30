@@ -8,9 +8,9 @@
 
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		out.println("오라클 드라이버 로딩 완료");
+		System.out.println("오라클 드라이버 로딩 완료");
 	}catch (ClassNotFoundException e){
-		out.println(e);
+		System.out.println(e);
 	}
 	//DriverManager 클래스에 있는 메서드를 사용해서, 연결자를 불어온다.
 	
@@ -21,20 +21,20 @@
 				, "1234");
 		/* 	Driver가 제대로 연결되어서 null이 있는지 출력해서 확인했다.
 	 	out.println("<br>"+ conn); */
-		out.println("DB 연결 완료");
+		System.out.println("DB 연결 완료");
 		//query 문장을 만들었음, id와 name (a, b)
 		String query = ("create table woori(id varchar2(10) primary key, name varchar2(10))"); 
 		//query 문을 사용하기 위해서는 state 문장을 가지고 와야함. 그걸 createStatement를 사용해서 state 객체를 만들어서 불러온다
 		st = conn.createStatement();
-		out.println("<br>"+ st);
+		System.out.println("<br>"+ st);
 		//query 문을 시행하는 곳.
 		st.executeUpdate(query);
-		out.println("테이블 생성 성공");
+		System.out.println("테이블 생성 성공");
 		
 		//해제할 때는 역순으로 닫아야 한다.
 	
 	}catch (SQLException e){
-		out.println(e);
+		System.out.println(e);
 	}finally {
 		try{
 			//if문을 써서 DB닫기
@@ -46,7 +46,7 @@
 			conn.close(); */
 			
 		} catch(SQLException e){
-			out.println(e);
+			System.out.println(e);
 		}
 	}
 

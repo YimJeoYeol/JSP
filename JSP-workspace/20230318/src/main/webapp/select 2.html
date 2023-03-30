@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>특정 사람 조회하기</title>
+<style>
+	table, tr, th, td {
+		border : 1px solid black;
+		border-collapse: collapse;
+		}
+</style>
+<script>
+	function blankCheck() {
+		var blank = 0;
+		if(selectData.id.value === "") blank=1;
+		let selectData;
+		if(selectData.password.value === "") blank=1;
+		
+		if(blank == 1) {
+			alert("모든 내용을 입력하세요!");
+			return false;
+		}
+		return true;
+	}
+	
+	function check_num(str){
+		if(isNaN(str)){
+			alert("숫자만 입력하세요.")
+			return "";
+		}
+		return str;
+	}
+</script>
+</head>
+<body>
+	<h1>회원의 사용자 ID와 암호를 입력하세요.</h1>
+	<hr>
+	<form action="select.jsp" method="post" name="selectData" onsubmit="return blankCheck();">
+	<table>
+		<tr><th>사용자 ID</th><td><input type="text" name="id"></td></tr>
+		<tr><th>암호</th><td><input type="password" name="password" onkeyup="this.value=check_num(this.value)"></td></tr>
+		<tr><th colspan="2"><input type="submit" value="조회"></th></tr>
+	</table>
+	</form>
+</body>
+</html>

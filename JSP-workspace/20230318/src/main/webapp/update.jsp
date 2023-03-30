@@ -19,38 +19,38 @@
 	String name = request.getParameter("name");
 	String id = request.getParameter("id");
 	int password = Integer.parseInt(request.getParameter("password"));
-	String emial = request.getParameter("emial");
+	String email = request.getParameter("email");
 	
 	//드라이버 로딩 + 연결자 생성 + 쿼리문 작성 및 실행
 	try {
 		Class.forName(className);
 		conn = DriverManager.getConnection(url, dbID, dbPassword);
 		
-		sql = "update woori set name=?, id=?, password=?, emial=? where id = ?";
+		sql = "update woori set name=?, id=?, password=?, email=? where id = ?";
 		pst = conn.prepareStatement(sql);
 		pst.setString(1, name);
 		pst.setString(2, id);
 		pst.setInt(3, password);
-		pst.setString(4, emial);
+		pst.setString(4, email);
 		pst.setString(5, id);
 		
 		result = pst.executeUpdate();
 		
 	} catch (ClassNotFoundException e){
-		out.print(e);
+		System.out.print(e);
 	} catch (SQLException e){
-		out.print(e);
+		System.out.print(e);
 	} finally{
 		if(result > 0){
-    		out.print("<br>데이터가 성공적으로 수정되었습니다.<br>");
+			System.out.print("<br>데이터가 성공적으로 수정되었습니다.<br>");
     	} else {
-    		out.print("<br>데이터 수정에 실패했습니다.<br>");
+			System.out.print("<br>데이터 수정에 실패했습니다.<br>");
     	}
 		try {
 			if(pst != null) pst.close();
 			if(conn != null) conn.close();
 		} catch (SQLException e){
-			out.print(e);
+			System.out.print(e);
 		}
 	}
 %>

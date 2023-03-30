@@ -51,27 +51,27 @@
 		//등록된 회원이 있는지 없는지 체크
 		//테이블에 정보가 하나도 없을 때
 		if(!(rs.next())) { // 값이 없어야지 false가 되고 !가 붙어서 true가 되어서 if문이 실행하게 된다. if문은 true일 때 실행이 되니까.
-			out.print("등록된 회원이 없습니다.");
+			System.out.print("등록된 회원이 없습니다.");
 		//테이블에 정보가 있으면 갯수만큼 화면에 출력
 		} else { //rs.next는 레코드 단위로 값을 가지고옴.
 			do{
-				out.print("<tr><td>" + rs.getString(1) + "</td>");
-				out.print("<td>" + rs.getString(2) + "</td>");
-				out.print("<td>" + rs.getString(3) + "</td>");
-				out.print("<td>" + rs.getInt(4) + "</td></tr>");
+				System.out.print("<tr><td>" + rs.getString(1) + "</td>");
+				System.out.print("<td>" + rs.getString(2) + "</td>");
+				System.out.print("<td>" + rs.getString(3) + "</td>");
+				System.out.print("<td>" + rs.getInt(4) + "</td></tr>");
 			}while(rs.next());
 		}
 	} catch (ClassNotFoundException e){
-		out.print(e);
+			System.out.print(e);
 	} catch (SQLException e){
-		out.print(e);
+			System.out.print(e);
 	} finally {
 		try {
 			if(rs != null) rs.close();
 			if(stm != null) stm.close();
 			if(conn != null) conn.close();
 		} catch (SQLException e){
-			out.print(e);
+			System.out.print(e);
 		}
 	}
 %>

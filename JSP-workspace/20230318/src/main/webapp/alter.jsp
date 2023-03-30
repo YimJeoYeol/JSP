@@ -15,7 +15,7 @@
 	try {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 	}catch (ClassNotFoundException e) {
-		out.print(e);
+		System.out.print(e);
 	}
 	//DB 연결, conn 커넥션 객체 생성
 	try {
@@ -27,23 +27,23 @@
 		stm = conn.createStatement();
 		
 		//stm 수행하고 처리
-/* 		stm.executeUpdate("alter table woori modify name varchar2(10) not null");
+		stm.executeUpdate("alter table woori modify name varchar2(10) not null");
 		stm.executeUpdate("alter table woori add email varchar(30)");
-		stm.executeUpdate("alter table woori add password number"); */
+		stm.executeUpdate("alter table woori add password number");
 		
 		rs = stm.executeQuery("select * from woori");
 		ResultSetMetaData rsmd = rs.getMetaData();
-		out.print("테이블이 수정되었습니다. <br>");
-		out.print(rsmd.getColumnCount() + "개의 칼럼을 가지고 있습니다. <br><hr>");
+		System.out.print("테이블이 수정되었습니다. <br>");
+		System.out.print(rsmd.getColumnCount() + "개의 칼럼을 가지고 있습니다. <br><hr>");
 		
 		for(int i=1; i <= rsmd.getColumnCount(); i++){
-			out.print(i + "번째 컬럼명은 "+ rsmd.getColumnName(i)+"<br>");
-			out.print(i + "번째 컬럼의 유형은 " + rsmd.getColumnType(i)+ "<br>");
-			out.print(i + "번째 컬럼의 크기는 " + rsmd.getPrecision(i)+ "<br><hr>");
+			System.out.print(i + "번째 컬럼명은 "+ rsmd.getColumnName(i)+"<br>");
+			System.out.print(i + "번째 컬럼의 유형은 " + rsmd.getColumnType(i)+ "<br>");
+			System.out.print(i + "번째 컬럼의 크기는 " + rsmd.getPrecision(i)+ "<br><hr>");
 		}
 		
 	} catch (SQLException e) {
-		out.print(e);
+		System.out.print(e);
 	} finally {
 		//DB연결 해제
 		try {
@@ -52,7 +52,7 @@
 			if(conn != null) conn.close();
 			
 		} catch(SQLException e) {
-			out.print(e);
+			System.out.print(e);
 		}
 	}
 %>
